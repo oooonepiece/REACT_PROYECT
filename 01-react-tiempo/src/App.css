@@ -1,26 +1,24 @@
 #root {
   margin: 0 auto;
   text-align: center;
-  width: 85%;
+  width: 100%;
   
 }
 
 body{
   width: 100%;
-  background-image: url("https://images8.alphacoders.com/787/787207.jpg");
+  height: 100%;
+  background-image: url("assets/img/fondos/fondo_base.jpg");
   opacity: 1;
 }
-header{
-  padding-top: 2em;
-}
 main{
-  width: 90%;
+  width: 80%;
   padding: auto;
   margin: auto;
   
 }
 .input1{
-  width: 90.9%  ;
+  width: 85%  ;
 }     
 .logo {
   height: 6em;
@@ -56,4 +54,7 @@ main{
 
 .read-the-docs {
   color: #888;
+}
+.tamaño_img_move{
+  width: 1%;
 }

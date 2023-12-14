@@ -4,7 +4,6 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Formulario } from './componentes/formulario'
 import { TiempoVista } from './componentes/tiempoVista'
-
 function App() {
   const [count, setCount] = useState(0)
 
@@ -16,7 +15,8 @@ function App() {
         </header>
         <main className='container-fliud'>
           <Formulario></Formulario>
-          <TiempoVista></TiempoVista>
+          <TiempoVista>
+          </TiempoVista>
         </main>
         <aside>
     
