@@ -19,7 +19,13 @@ main{
 }
 .input1{
   width: 85%  ;
-}     
+} 
+.imagen_central{
+  width: 20%; 
+}  
+.imagenes_pequenas{
+  width: 50%;
+}  
 .logo {
   height: 6em;
   padding: 1.5em;
