@@ -5,9 +5,11 @@ export function TiempoVista () {
     <div >
         <div className="card mb-5 mt-10 rounded-0">
             <div className="card-body ">
-                 <h5 className="card-title">Card title</h5>
-                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                 <a href="#" className="btn btn-primary">Go somewhere</a>
+                 <h2 className="card-title">Ciudad</h2>
+                    <div className="card mx-auto imagen_central " >
+                       <img src={imagenes.img2} className="card-img-top"/> 
+                    </div>
+                 <a href="#" className="btn mt-1 btn-primary">Go somewhere</a>
             </div>
         </div>
     <div>
@@ -16,7 +18,7 @@ export function TiempoVista () {
                 <div className="card">
                 <div className="card-bo dy">
                 <h5 className="card-title">Día</h5>
-                    <div className="card">
+                    <div className="card mx-auto imagenes_pequenas">
                        <img src={imagenes.img1} class="card-img-top"/> 
                     </div>
                     <p className="card-text">grados</p>
@@ -27,8 +29,8 @@ export function TiempoVista () {
                 <div className="card">
                 <div className="card-bo dy">
                     <h5 className="card-title">Día</h5>
-                    <div className="card">
-                       <img src={imagenes.img1} class="card-img-top"/> 
+                    <div className="card mx-auto imagenes_pequenas">
+                       <img src={imagenes.img2} class="card-img-top"/> 
                     </div>
                     <p className="card-text">grados</p>
                 </div>
@@ -38,8 +40,8 @@ export function TiempoVista () {
                 <div className="card">
                 <div className="card-bo dy">
                     <h5 className="card-title">Día</h5>
-                    <div className="card">
-                       <img src={imagenes.img1} class="card-img-top"/> 
+                    <div className="card mx-auto imagenes_pequenas">
+                       <img src={imagenes.img3} class="card-img-top"/> 
                     </div>
                     <p className="card-text">grados</p>
                 </div>
@@ -49,8 +51,8 @@ export function TiempoVista () {
                 <div className="card">
                 <div className="card-bo dy">
                 <h5 className="card-title">Día</h5>
-                <   div className="card">
-                       <img src={imagenes.img1} class="card-img-top"/> 
+                <   div className="card mx-auto imagenes_pequenas">
+                       <img src={imagenes.img4} class="card-img-top"/> 
                     </div>
                     <p className="card-text">grados</p>
                 </div>
