@@ -2,12 +2,12 @@ import React from 'react'
 
 export function Formulario () {
   return (
-    <div>
-        <form>
-            <input className='input1 mb-2' type='text' name='form' placeholder='Ingresa una ciudad'></input>
-            <input type='submit'></input>
+        <form>  
+          <div className='d-flex mb-2 bg-secondary bg-opacity-25'>
+            <input className='buscador' type='text' name='form' placeholder='Ingresa una ciudad'></input>
+            <input className='boton' name='Enviar' type='submit'></input>
+          </div> 
         </form>
-    </div>
-    
+        
   )
 }
