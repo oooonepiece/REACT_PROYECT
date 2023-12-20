@@ -2,14 +2,36 @@ import React from 'react'
 import imagenes from '../assets/imagenes'
 export function TiempoVista () {
   return (
-    <div >
-        <div className="card mb-5 mt-10 rounded-0">
+    <div className='opacidad' >
+        <div className="card mb-3 mt-10 rounded-0">
             <div className="card-body ">
-                 <h2 className="card-title">Ciudad</h2>
-                    <div className="card mx-auto imagen_central " >
-                       <img src={imagenes.img2} className="card-img-top"/> 
+                <div className='d-inline-flex border cuadro_central'>
+                    <div className='mx-auto'>
+                        <h2 className="card-title">Ciudad</h2>
+                        <h3 className="card-title">Grados</h3>
+                        <h3 className="card-title">Cielo Depejado</h3>
+                        <div className='d-inline-flex'>
+                            <div>
+                                <h5 className="card-title">Viento</h5>
+                                <h5 className="card-title mx-2">presion</h5>
+                            </div>
+                            <div>
+                                <h5 className="card-title">Humedad</h5>
+                                <h5 className="card-title mx-2">nubosidad</h5>
+                            </div>
+                        </div>
+
                     </div>
-                 <a href="#" className="btn mt-1 btn-primary">Go somewhere</a>
+                </div>
+                <div className='d-inline-flex cuadro_central'>
+                    
+                    <div className="card mx-auto imagen_central ">
+                    <div>
+                      <h5 className="card-title">timeStamp</h5>  
+                    </div>
+                        <img src={imagenes.img2} className="card-img-top"/> 
+                    </div>
+                </div>
             </div>
         </div>
     <div>
