@@ -1,37 +1,22 @@
-import { useState } from "react";
-function Square(){
-  const [value,setValue]=useState(null);
+import { useState } from 'react'
 
-  function darClick(){
-    setValue('x');
-  }
-  return(
-    <button 
-    className="square"
-    onClick={darClick}>
-      {value}
-    </button>
-  )
-}
+import './App.css'
+import Board from './components/Board'
+import Square from './components/darClick'
 
-export default function Board() {
+
+ 
+function App() {
+  const [count, setCount] = useState(0)
+ 
   return (
     <>
-      <div className="fila">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="fila">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="fila">
-        <Square />
-        <Square />
-        <Square />
-      </div>
+      <Board></Board>
+      
+
+ 
     </>
-  );
+    )
 }
+ 
+export default App
