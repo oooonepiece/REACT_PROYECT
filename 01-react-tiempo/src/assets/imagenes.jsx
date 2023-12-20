@@ -1,4 +1,4 @@
-//vamsos a crear este componente para pode utlizar imagenes y de manera más sencilla las utilizaremos como objetos
+//vamos a crear este componente para pode utlizar imagenes y de manera más sencilla las utilizaremos como objetos
 
 import lluvioso from './img/estadosTiempo/lluvioso.png'
 
