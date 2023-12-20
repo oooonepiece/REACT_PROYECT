@@ -1,12 +1,16 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: auto;
   text-align: center;
-  background-color: black;
+  
 }
 
-.fila{
-  width: 1000px;
-  height: auto;
+
+.square{
+  background-color:rgb(167, 167, 223) ;
+  width: 100px;
+  height: 100px;
+  
+ 
 }
