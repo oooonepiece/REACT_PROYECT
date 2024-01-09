@@ -5,18 +5,36 @@ const api ={
   key: "8c62be77417604c5f29880962cb5e6a5",
   base: "https://api.openweathermap.org/data/2.5/"
 }
+const api1 ={
+    key: "8c62be77417604c5f29880962cb5e6a5",
+    base: "https://api.openweathermap.org/data/2.5/forecast"
+  }
+
 
 export function TiempoVista () {
     const [buscar, setBuscar] = useState('')
     const [weather, setweather] = useState('')
 
-  const buscarPressed = () => {
-    fetch(`${api.base}weather?q=${buscar}&units=metric&appid=${api.key}`)
+    const [preBuscar, setPreBuscar] = useState('')
+    const [preweather, setPreweather] = useState('')
+
+  const buscarPressed = (a,b) => {
+    a = fetch(`${api1.base}?q=${preBuscar}&units=metric&appid=${api1.key}`)
+    .then((res) => res.json())
+    .then((result) => {
+        setPreweather(result);
+     });  
+    
+    b = fetch(`${api.base}weather?q=${buscar}&units=metric&appid=${api.key}`)
     .then((res) => res.json())
     .then((result) => {
        setweather(result);
-     });
+     });   
+
+    
   }
+
+  
   // Para obetener la fecha actual necesitaremos los siguientes parametros:
   /* necesitamos el dia, el mes y el año*/
   const today = new Date(); // este es el dia actual
@@ -50,9 +68,8 @@ export function TiempoVista () {
   return (
     <div className='' >
         <div className='container-fluid d-flex mb-2'>
-            <input type="text" className="form-control" placeholder="Ingrese una ciudad"
-            onChange={(e) => setBuscar(e.target.value)}
-             />
+            <input  type="text" className="form-control" placeholder="Ingrese una ciudad"
+            onChange =  {(e) => setBuscar(e.target.value) || setPreBuscar(e.target.value)}/>
             <button onClick={buscarPressed} type="submit" className="btn btn-secondary ms-3">Buscar</button>     
         </div>
 
@@ -63,37 +80,37 @@ export function TiempoVista () {
                     <div className='mx-auto'>
                         <h2 className="card-title pb-2" placeholder="Ciudad">{weather.name}</h2>
                         
-                        {typeof weather.main != "undefined" ?
-                        <h3 className="card-title pb-2">{(weather.main.temp).toFixed(0)}ºC</h3>
-                        :
-                            ' '
-                        }
-                         {typeof weather.main != "undefined" ?
-                        <h3 className="card-title pb-2">{weather.weather[0].main}</h3>
-                        :
-                            ' '
-                        }   
+                            {typeof weather.main != "undefined" ?
+                            <h3 className="card-title pb-2">{(weather.main.temp).toFixed(0)}ºC</h3>
+                            :
+                                ' '
+                            }
+                            {typeof weather.main != "undefined" ?
+                            <h3 className="card-title pb-2">{weather.weather[0].main}</h3>
+                            :
+                                ' '
+                            }   
 
-                         {typeof weather.main!= "undefined"?
-                        <h3 className="card-title pb-2">{weather.weather[0].description}</h3>
-                        :
-                           ''
-                        }
+                            {typeof weather.main!= "undefined"?
+                            <h3 className="card-title pb-2">{weather.weather[0].description}</h3>
+                            :
+                                ' '
+                            }
                         
                         <div className='d-inline-flex '>
                             <div className='opacity-100'>
 
-                            {typeof weather.main != "undefined" ?
-                        <h5 className="card-title pb-2">Presión {weather.main.pressure}pasc</h5>
-                        :
-                            ' '
-                        }
+                                {typeof weather.main != "undefined" ?
+                            <h5 className="card-title pb-2">Presión {weather.main.pressure}pasc</h5>
+                            :
+                                ' '
+                            }
                                 
                                 {typeof weather.main != "undefined" ?
-                        <h5 className="card-title pb-2">Viento {weather.wind.speed} m/s</h5>
-                        :
-                            ' '
-                        }
+                            <h5 className="card-title pb-2">Viento {weather.wind.speed} m/s</h5>
+                            :
+                                ' '
+                            }
                             </div>
                             <div>
                             {typeof weather.main != "undefined" ?
@@ -185,11 +202,13 @@ export function TiempoVista () {
                        <img src={imagenes.img1} className="card-img-top"/> 
                     </div>
                     <p className="card-text mt-1 mb-1">
-                    {typeof weather.main != "undefined" ?
-                        <h5 className="card-title ps-2 pb-2">{weather.main.temp}</h5>
+
+                    {typeof preweather.list[2].main != " " ?
+                        <h5 className="card-title ps-2 pb-2">{preweather.list[2].main.temp} ºC</h5>
                         :
                             ' '
-                        }
+                    }
+
                     </p>
                 </div>
                 </div>
