@@ -8,18 +8,13 @@
 body{
   width: 100%;
   height: 100%;
-  background-image: url("assets/img/fondos/fondo_base.jpg");
+  background-image: url("assets/img/fondos/mountPeque.jpg");
 }
 .cuadro_central{
   width: 50%;
  
 }
-.boton{
-  width: 8%;
-}
-.buscador{
-  width: 95%;
-}
+
 main{
   width: 80%;
   padding: auto;
@@ -68,6 +63,7 @@ main{
 .read-the-docs {
   color: #888;
 }
+
 .tamaño_img_move{
   width: 1%;
 }
