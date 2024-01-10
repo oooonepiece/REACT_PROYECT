@@ -3,14 +3,22 @@
   margin: 0 auto;
   padding: auto;
   text-align: center;
-  
-}
 
+}
+.tablero{
+  width: 300px;
+  height: 300px;
+
+}
 
 .square{
   background-color:rgb(167, 167, 223) ;
   width: 100px;
   height: 100px;
-  
- 
+
+}
+
+.fila{
+  height: 100px;
+  width: 100%;
 }
