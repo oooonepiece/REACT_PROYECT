@@ -9,6 +9,7 @@ import tormentoso from './img/estadosTiempo/tormenta.png'
 import nublado from './img/estadosTiempo/nublado.png'
 
 import nevado from './img/estadosTiempo/nevado.png'
+
 export default {
     "img1": lluvioso,
     "img2": soleado,
