@@ -62,18 +62,20 @@ export function TiempoVista() {
     const dias4 = sumarDia(dias + 4);
     const dia4 = days[dias4];
 
-    const month = today.getMonth().toFixed(0) + 1; // con este parametro obtendremos el mes
+    const month = today.getMonth() + 1; // con este parametro obtendremos el mes
+    const meses = ["December","January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November",];
+    const mes = meses[month];
     const year = today.getFullYear();// con este parametro obtendremos el año
-    const date = year + "/" + month + "/" + hoy; // una ves obtenido el dia, mes y año. solo tenmos que concatenarlo.
+    const date = hoy + "/" + mes.substring(0,3) + "/" + year.toString().substring(2); // una ves obtenido el dia, mes y año. solo tenmos que concatenarlo.
 
 
 
     return (
         <div className='' >
             <div className='container-fluid d-flex mb-2'>
-                <input type="text" className="form-control" placeholder="Ingrese una ciudad"
+                <input type="text " className="form-control bg-secondary text-white" placeholder="Ingrese una ciudad"
                     onChange={(e) => setBuscar(e.target.value) || setPreBuscar(e.target.value)} />
-                <button onClick={buscarPressed} type="submit" className="btn btn-secondary ms-3">Buscar</button>
+                <button onClick={buscarPressed} type="submit" className="btn btn-secondary  ms-3">𝔹𝕦𝕤𝕔𝕒𝕣</button>
             </div>
 
             <div className="card mb-3 mt-10 rounded-2 bg-secondary  bg-opacity-25 text-white">
@@ -84,7 +86,7 @@ export function TiempoVista() {
                             <h2 className="card-title pb-2" placeholder="Ciudad">{weather.name}</h2>
 
                             {typeof weather.main != "undefined" ?
-                                <h3 className="card-title pb-2">{(weather.main.temp).toFixed(0)}ºC</h3>
+                                <h3 className="card-title pb-2">{(weather.main.temp).toFixed(0)} ºC</h3>
                                 :
                                 ' '
                             }
