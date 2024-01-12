@@ -10,10 +10,12 @@ import nublado from './img/estadosTiempo/nublado.png'
 
 import nevado from './img/estadosTiempo/nevado.png'
 
+import busqueda from './img/ico/busqueda.png'
 export default {
     "img1": lluvioso,
     "img2": soleado,
     "img3": tormentoso,
     "img4": nublado,
-    "img5": nevado
+    "img5": nevado,
+    "ico" : busqueda
 }
