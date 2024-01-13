@@ -45,13 +45,25 @@ export default function Board() {
         }
         return null;
       }
+      
       const ganador=calcularGanador(squares);
       let estado;
+
       if(ganador){
         estado='Ha ganado el jugador:'+ ganador;
-      }else{
+      }else {
         estado="Siguiente jugador: "+(jugador ? "x" :"o");
       }
+      if(ganador==null && squares.every((squares)=> squares!=null)){
+        
+        estado="Empate";
+     
+      }
+      
+      
+      
+        
+      
       
 
     return (
@@ -76,7 +88,7 @@ export default function Board() {
             <Square value={squares[8]} Click={()=>{darClick(8)}}/>
           </div>
         </div>
-        <button className="reset" onClick={()=>setSquares(Array(9).fill(null))}>Reset</button>
+        <button className="reset" onClick={()=>setSquares(Array(9).fill(null))}>Reiniciar</button>
       </>
     );
   }
