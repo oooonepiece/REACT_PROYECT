@@ -27,7 +27,7 @@ body {
   display: flex;
   place-items: center;
   height: 100vh;
-  background-color: pink;
+  background-image: url("/media/fondo.jpg");
 }
 
 
