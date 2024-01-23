@@ -3,7 +3,7 @@ export function CartaForm({Pokedex}) {
         <div className=" row mx-auto ">
             <div className="card bg-secondary bg-opacity-25 text-white">
                 {typeof Pokedex.name != "undefined" ?
-                    <img src={Pokedex.sprites.other.dream_world.front_default} className=" w-25 h-75  mx-auto " />
+                    <img src={Pokedex.sprites.other["official-artwork"].front_default} className=" w-25 h-75  mx-auto " />
                     :
                     ' '
                 }
