@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { BuscarPOkemon } from './componentes/Formulario'
 import { CartaForm } from './componentes/Carta'
-import { Pokemons } from './componentes/Pokemons'
+import { CartasIMG } from './componentes/Pokemons'
 import React from "react"
 
 
@@ -12,46 +12,46 @@ const api = {
 
 function App() {
   const [buscar, setBuscar] = useState('')
-  const [Pokedex, setPokemon] = useState('')
+  const [Pokedex, setPokedex] = useState('')
 
   const buscarPressed = () => {
     fetch(`${api.base}/${buscar}`)
       .then((res) => res.json())
       .then((result) => {
-        setPokemon(result);
+        setPokedex(result);
         console.log(result)
       });
 
   }
-  const[listPokemon, setListPokemon] = useState([])
+  const [pokemon, setPokemon] = useState([])
   useEffect(() => {
-    const getListPokemon = async () => {
+    const getPokemon = async () => {
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
+      const listaDePokemon = await response.json()
+      const { results } = listaDePokemon
 
-      const url = await fetch(`https://pokeapi.co/api/v2/pokemon/kanto`)
-      const listaPokemon = await url.json()
-      const { pokemon_entries } = listaPokemon
-
-
-      const listaPokemonResult = pokemon_entries.map(async (pokemon) => {
-        const auxPokemon = await fetch(`${pokemon.pokemon_name}`)
-        const resultPokemon = await auxPokemon.json()
-
-        return resultPokemon
+      const newPokemon = results.map(async (pokemon) => {
+        const response = await fetch(pokemon.url)
+        const poke = await response.json()
+        return poke
+        
       })
-
-      const resultadoCompleto = await Promise.all(listaPokemonResult).then( resultados => resultados.map((result) => {
-
-      }))
-      
-      setListPokemon(resultadoCompleto)
+      setPokemon(await Promise.all(newPokemon));
     }
-    getListPokemon()
+    getPokemon()
   }, [])
+
 
   return (
     <>
-      <BuscarPOkemon setBuscar={setBuscar} buscarPressed={() => buscarPressed}></BuscarPOkemon>
-      <CartaForm Pokedex={Pokedex}></CartaForm>
+      <div>
+        <BuscarPOkemon setBuscar={setBuscar} buscarPressed={() => buscarPressed}></BuscarPOkemon>
+        <CartaForm Pokedex={Pokedex}></CartaForm>
+      </div>
+      <div >
+        <CartasIMG pokemon={pokemon}></CartasIMG>
+      </div>
+      
     </>
   )
 }
