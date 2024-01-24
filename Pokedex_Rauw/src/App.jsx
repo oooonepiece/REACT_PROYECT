@@ -4,6 +4,7 @@ import { BuscarPOkemon } from './componentes/Formulario'
 import { CartaForm } from './componentes/Carta'
 import { CartasIMG } from './componentes/Pokemons'
 import React from "react"
+import { InfomacionPoke } from './componentes/Estadisticas'
 
 
 const api = {
@@ -46,7 +47,9 @@ function App() {
     <>
       <div>
         <BuscarPOkemon setBuscar={setBuscar} buscarPressed={() => buscarPressed}></BuscarPOkemon>
-        <CartaForm Pokedex={Pokedex}></CartaForm>
+    
+          <InfomacionPoke Pokedex={Pokedex}></InfomacionPoke>
+        
       </div>
       <div >
         <CartasIMG pokemon={pokemon}></CartasIMG>
