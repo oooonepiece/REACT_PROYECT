@@ -4,6 +4,7 @@ import { BuscarPOkemon } from './componentes/Formulario'
 import { CartaForm } from './componentes/Carta'
 import { CartasIMG } from './componentes/Pokemons'
 import React from "react"
+import { InfomacionPoke } from './componentes/Estadisticas'
 
 
 const api = {
@@ -23,7 +24,10 @@ function App() {
       });
 
   }
+
+
   const [pokemon, setPokemon] = useState([])
+
   useEffect(() => {
     const getPokemon = async () => {
       const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
@@ -46,7 +50,7 @@ function App() {
     <>
       <div>
         <BuscarPOkemon setBuscar={setBuscar} buscarPressed={() => buscarPressed}></BuscarPOkemon>
-        <CartaForm Pokedex={Pokedex}></CartaForm>
+        <InfomacionPoke Pokedex={Pokedex}></InfomacionPoke>
       </div>
       <div >
         <CartasIMG pokemon={pokemon}></CartasIMG>

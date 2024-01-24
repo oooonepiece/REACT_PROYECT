@@ -7,7 +7,12 @@ export function CartaForm({Pokedex}) {
                     :
                     ' '
                 }
-               <h1 className="mx-auto rounded-pill border border-danger px-5 py-3 bg-black mt-4">{Pokedex.name}</h1>
+                {typeof Pokedex.name != "undefined" ?
+                    <h1 className="mx-auto rounded-pill border border-danger px-3 py-2 bg-black mt-4">{Pokedex.name}</h1>
+                :
+
+                ' '}
+               
                
             </div>
         </div>

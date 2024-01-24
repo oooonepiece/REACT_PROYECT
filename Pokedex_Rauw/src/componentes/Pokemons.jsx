@@ -1,4 +1,5 @@
 export function CartasIMG({ pokemon }) {
+    
     return (
         <div className="row row-cols-4  mt-2 ">
             {
