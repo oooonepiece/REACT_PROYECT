@@ -10,14 +10,14 @@ export function InfomacionPoke({ Pokedex }) {
         const nombresMovimientosSeparados = cadenaMovimientos.split('-')
         return nombresMovimientosSeparados;
     }
-    console.log(extraerMovs());
+    
     //const nombresMovimientos = Pokedex.moves.map((a) => a.move.name)
     //const cadenaMovimientos = nombresMovimientos.join('-');
     //const nombresMovimientosSeparados = cadenaMovimientos.split('-')
 
 
     // arrayOfWords = [NombresMovimientos]
-    const arrayOfWords = extraerMovs();
+    const arrayOfWords =  ["hola","quetal","estas"]//extraerMovs() 
     //timer
 
     const [movimientosCounter, setMovimientosCounter] = useState(0);
@@ -30,7 +30,7 @@ export function InfomacionPoke({ Pokedex }) {
                 }
                 return currentValue + 1;
             });
-        }, 4000);
+        }, 100);
         return () => clearInterval(interval);
     }, []);
 
@@ -107,3 +107,4 @@ export function InfomacionPoke({ Pokedex }) {
         </>
     )
 }
+/**/ 
