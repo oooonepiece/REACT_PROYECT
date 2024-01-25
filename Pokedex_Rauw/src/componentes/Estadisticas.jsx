@@ -15,9 +15,7 @@ const array = [];
    }else{
 
    }
-
     const arrayOfWords = array
-
 
     const [movimientosCounter, setMovimientosCounter] = useState(0);
 
@@ -32,8 +30,6 @@ const array = [];
         }, 4000);
         return () => clearInterval(interval);
     }, []);
-
-
 
     return (
         <>
