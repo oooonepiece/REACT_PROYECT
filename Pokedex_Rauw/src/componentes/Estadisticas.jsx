@@ -1,12 +1,40 @@
 
+import { useEffect, useState } from "react"
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 export function InfomacionPoke({ Pokedex }) {
 
-    function PoderTotal(stats){
-        stats.reduce(function(a,b){
-        return a.base_stat + b.base_stat
-       });
+    function extraerMovs() {
+        const nombresMovimientos = Pokedex.moves.map((a) => a.move.name)
+        const cadenaMovimientos = nombresMovimientos.join('-');
+        const nombresMovimientosSeparados = cadenaMovimientos.split('-')
+        return nombresMovimientosSeparados;
     }
+    console.log(extraerMovs());
+    //const nombresMovimientos = Pokedex.moves.map((a) => a.move.name)
+    //const cadenaMovimientos = nombresMovimientos.join('-');
+    //const nombresMovimientosSeparados = cadenaMovimientos.split('-')
+
+
+    // arrayOfWords = [NombresMovimientos]
+    const arrayOfWords = extraerMovs();
+    //timer
+
+    const [movimientosCounter, setMovimientosCounter] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setMovimientosCounter((currentValue) => {
+                if (currentValue + 1 === arrayOfWords.length) {
+                    return 0
+                }
+                return currentValue + 1;
+            });
+        }, 4000);
+        return () => clearInterval(interval);
+    }, []);
+
+
 
 
     return (
@@ -21,12 +49,20 @@ export function InfomacionPoke({ Pokedex }) {
                                 <p>Nombre: {Pokedex.name}</p>
                                 <p>Habilidades: {Pokedex.abilities[0].ability.name} , {Pokedex.abilities[1].ability.name}</p>
                                 <p>Tipo: {Pokedex.types[0].type.name}</p>
+
                                 <p>Movimientos : {Pokedex.moves[0].move.name}</p>
                                 <div className="d-flex">
                                     <p className="ms-2">Altura : {Pokedex.height}</p>
-                                    <p className="ms-2">Peso : {Pokedex.weight}</p>  
+                                    <p className="ms-2">Peso : {Pokedex.weight}</p>
                                 </div>
-                                
+
+
+                                <div className="d-flex">
+                                    <p className="ms-2">Altura : {Pokedex.height}</p>
+                                    <p className="ms-2">Peso : {Pokedex.weight}</p>
+                                </div>
+
+
                                 <div>
                                     <div className="d-flex">
                                         <p className="ms-2">{Pokedex.stats[0].base_stat} - {Pokedex.stats[0].stat.name}</p>
@@ -41,7 +77,25 @@ export function InfomacionPoke({ Pokedex }) {
                                         <p className="ms-2">{Pokedex.stats[4].base_stat} - {Pokedex.stats[4].stat.name}</p>
                                     </div>
                                 </div>
-                                <p>Puntuación total de estadísticas: {Pokedex.stats.reduce((a,b) => a.base_stat + b.base_stat,0)}</p>
+
+                                <p>Puntuación total de estadísticas:{Pokedex.stats.map((a, b) => (a.base_stat + (b - b))).reduce((a, b) => a + b)} Pts.</p>
+                                <div>
+                                    <p className="d-flex">Movimientos:
+
+                                        <SwitchTransition>
+                                            <CSSTransition classNames="fade" key={arrayOfWords[movimientosCounter]} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
+                                                <div>
+                                                    {arrayOfWords[movimientosCounter]}
+                                                </div>
+                                            </CSSTransition>
+                                        </SwitchTransition>
+
+
+
+                                    </p>
+
+                                </div>
+
 
                             </div>
                             :
