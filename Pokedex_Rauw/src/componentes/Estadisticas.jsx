@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react"
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 export function InfomacionPoke({ Pokedex }) {
-
-    function extraerMovs() {
-        const nombresMovimientos = Pokedex.moves.map((a) => a.move.name)
-        const cadenaMovimientos = nombresMovimientos.join('-');
-        const nombresMovimientosSeparados = cadenaMovimientos.split('-')
-        return nombresMovimientosSeparados;
+const array = [];
+    function extraerMovs() {       
+            Pokedex.moves.map((a) => {
+                array.push(a.move.name);
+            });
+            return array;
+       
     }
-    console.log(extraerMovs());
-    //const nombresMovimientos = Pokedex.moves.map((a) => a.move.name)
-    //const cadenaMovimientos = nombresMovimientos.join('-');
-    //const nombresMovimientosSeparados = cadenaMovimientos.split('-')
+    
+   if(Pokedex.moves == "undefined"){
+        extraerMovs();
+   }else{
 
+   }
 
-    // arrayOfWords = [NombresMovimientos]
-    const arrayOfWords = extraerMovs();
-    //timer
+    const arrayOfWords = array
+
 
     const [movimientosCounter, setMovimientosCounter] = useState(0);
 
@@ -71,7 +72,7 @@ export function InfomacionPoke({ Pokedex }) {
 
                                         <SwitchTransition>
                                             <CSSTransition classNames="fade" key={arrayOfWords[movimientosCounter]} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
-                                                <div>
+                                                <div className="card">
                                                     {arrayOfWords[movimientosCounter]}
                                                 </div>
                                             </CSSTransition>

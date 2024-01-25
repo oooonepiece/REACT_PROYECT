@@ -48,8 +48,7 @@ function App() {
       <div>
         <BuscarPOkemon setBuscar={setBuscar} buscarPressed={() => buscarPressed}></BuscarPOkemon>
     
-          <InfomacionPoke Pokedex={Pokedex}></InfomacionPoke>
-        
+        <InfomacionPoke Pokedex={Pokedex}></InfomacionPoke>        
       </div>
       <div >
         <CartasIMG pokemon={pokemon}></CartasIMG>
