@@ -12,7 +12,8 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }body{
-  background-image: url('src/assets/media/paisaje.jpg_large');
+  background-image: url('src/assets/media/fondo.jpg');
+  background-attachment: fixed;
 
 }
 
