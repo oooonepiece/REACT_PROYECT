@@ -8,8 +8,8 @@ export default function App() {
  
 
   const [Pokemon,setPokemon] = useState([]);
-  const [buscar,setBuscar]=useState("");
   
+ 
   useEffect(() => {
     const getPokemon = async () => {
       const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
@@ -26,12 +26,13 @@ export default function App() {
     }
     getPokemon()
   }, [])
-  
+
+
   return (
     <>
     
-    <NavbarPokemon setBuscar={setBuscar}></NavbarPokemon>
-    <CartaPokemon Pokemon={Pokemon}></CartaPokemon>
+    <NavbarPokemon ></NavbarPokemon>
+    <CartaPokemon Pokemon={Pokemon} ></CartaPokemon>
     </>
     
   )
