@@ -1,18 +1,64 @@
 import React from "react"
  const CartaBusqueda =({pokemon})=>{
+    
+  
+  
     return(
-    <div className=" row row-cols-6 card bg-black bg-opacity-75 text-white mt-5  ms-5  ">
-                    <p className="card-text  w-50 mx-auto  mt-4 text-center ">Id. {pokemon.id} <br></br><br></br><br></br>
-                    habilidades: {pokemon.name}</p>
-
-                    <div className="card-body">
-                        <img className="h-100 w-100 " src={pokemon.sprites.other["official-artwork"].front_default}></img>
-                        <p className="card-text  w-50 mx-auto  mt-2 text-center ">{pokemon.name} </p>
-                    </div>
-                    <div className="card-img-top h-100">
-                    </div>
+        <div className="card bg-black bg-opacity-75 text-white mt-5    ">
+            <div className="row g-0">
+                <div className="col-md-4">
+                <h5 className="card-title text-center "> ID. {pokemon.id}</h5>
+                <img className="h-100 w-100 " src={pokemon.sprites.other["official-artwork"].front_default}></img>
                 </div>
+                <div className="col-md-8">
+                <div className="card-body">
+                    
+                    <h2 className="card-title">{pokemon.name}</h2>
+                    <br></br>
+                    <h5 className="titulo-seccion">Habilidades:</h5>
+                    {pokemon.abilities[0].ability.name} , {pokemon.abilities[1].ability.name}
+                    <h5 className="card-title">Estadisticas:</h5>
+                   {pokemon.stats.map(stat=> 
+                    <section>
+                        <span >{stat.stat.name} </span>
+                        <span > - {stat.base_stat}</span>
+                      
+                    </section>
+                    )}
+                      <p>Puntos en total: {pokemon.stats.map((a, b) => (a.base_stat + (b - b))).reduce((a, b) => a + b)} Pts.</p>
+                    <br></br>
+                    
+                    <h5 className="card-title">Tipo:</h5>
+                    {pokemon.types.map(t=><p>{t.type.name}</p>)}
+                    
+                   
+<button type="button" class="btn bg-white bg-opacity-75" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+ Movimientos
+</button>
 
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-black" id="staticBackdropLabel">Movimientos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        {pokemon.moves.map(m=><p className="text-black">{m.move.name}</p>)}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       
+      </div>
+    </div>
+  </div>
+</div>
+                </div>
+                </div>
+            </div>
+        </div>
     );
     
 };
