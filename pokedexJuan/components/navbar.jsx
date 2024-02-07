@@ -27,9 +27,10 @@ export default function NavbarPokemon() {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-black fixed-top  ">
+            <nav className="navbar navbar-expand-lg bg-black ">
                 <div className="container-fluid  ">
-                    <img src="../src/assets/media/bola.png" width="3%"></img>
+                    
+                    <img src="../src/assets/media/bola.png" width="3%" ></img>
                     <form
                         onSubmit={e => {
                             e.preventDefault();
@@ -45,25 +46,21 @@ export default function NavbarPokemon() {
                     <div className="collapse navbar-collapse ms-4 " id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active text-white" aria-current="page" href="#">Home</a>
+                                <a className="nav-link active text-white" aria-current="page" href="../index.html">Home</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link text-white" href="#">Link</a>
-                            </li>
+                           
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Dropdown
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item text-white" href="#">Action</a></li>
-                                    <li><a className="dropdown-item text-white" href="#">Another action</a></li>
+                                    <li><a className="dropdown-item text-black" href="#">Action</a></li>
+                                    <li><a className="dropdown-item text-black" href="#">Another action</a></li>
                                     <li><hr className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item text-white" href="#">Something else here</a></li>
+                                    <li><a className="dropdown-item text-black" href="#">Something else here</a></li>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled text-white" aria-disabled="true">Disabled</a>
-                            </li>
+                           
                         </ul>
                         <img src="../src/assets/media/pikachuCorriendo.gif" width="5%"></img>
                     </div>
