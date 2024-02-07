@@ -30,8 +30,8 @@ export default function App() {
 
   return (
     <>
-    
-    <NavbarPokemon ></NavbarPokemon>
+    <header ><NavbarPokemon ></NavbarPokemon></header>
+   
     <CartaPokemon Pokemon={Pokemon} ></CartaPokemon>
     </>
     
