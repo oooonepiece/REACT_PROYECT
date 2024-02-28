@@ -1,37 +1,39 @@
 import React from "react"
-const CartaBusqueda = ({ pokemon}) => {
-
+const CartaPokemon = ({ PokemonSolitario}) => {
+    if(!PokemonSolitario){
+        return <></>
+    }
 
 
   return (
     <div className="card bg-black bg-opacity-75 text-white mt-5">
       <div className="row g-0">
         <div className="col-md-4">
-          <h5 className="card-title text-center "> ID. {pokemon.id}</h5>
-          <img className="h-100 w-100 " src={pokemon.sprites.other["official-artwork"].front_default}></img>
+          <h5 className="card-title text-center "> ID. {PokemonSolitario.id}</h5>
+          <img className="h-100 w-100 " src={PokemonSolitario.sprites.other["official-artwork"].front_default}></img>
         </div>
         <div className="col-md-8">
           <div className="card-body">
 
-            <h2 className="card-title">{pokemon.name}</h2>
+            <h2 className="card-title">{PokemonSolitario.name}</h2>
             <br></br>
             <h5 className="titulo-seccion">Habilidades:</h5>
-            {pokemon.abilities.map(a => a.ability.name)}
+            {PokemonSolitario.abilities.map(a => a.ability.name)}
             <h5 className="card-title">Estadisticas:</h5>
-            {pokemon.stats.map(stat =>
+            {PokemonSolitario.stats.map(stat =>
               <section>
                 <span >{stat.stat.name} </span>
                 <span >  {stat.base_stat}</span>
 
               </section>
             )}
-            <p>Puntos en total: {pokemon.stats.map((a, b) => (a.base_stat + (b - b))).reduce((a, b) => a + b)} Pts.</p>
+            <p>Puntos en total: {PokemonSolitario.stats.map((a, b) => (a.base_stat + (b - b))).reduce((a, b) => a + b)} Pts.</p>
             <br></br>
             <div>
-           
+
             </div>
             <h5 className="card-title">Tipo:</h5>
-            {pokemon.types.map(t => <p>{t.type.name}</p>)}
+            {PokemonSolitario.types.map(t => <p>{t.type.name}</p>)}
 
 
             <button type="button" class="btn bg-white bg-opacity-75" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -46,7 +48,7 @@ const CartaBusqueda = ({ pokemon}) => {
                   </div>
                   <div class="modal-body ">
 
-                    {pokemon.moves.map(m => <p>{m.move.name}</p>)}
+                    {PokemonSolitario.moves.map(m => <p>{m.move.name}</p>)}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -60,9 +62,9 @@ const CartaBusqueda = ({ pokemon}) => {
       </div>
       <a href="../index.html"><img src="../src/assets/media/return.png" width="10%" ></img> </a>
     </div>
-
+   
   );
 
 };
 
-export default CartaBusqueda;
+export default CartaPokemon;
