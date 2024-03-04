@@ -15,7 +15,7 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                         })
                     }
                 </>
-            : ""
+                : ""
         }
     }
     function extraerZonas() {
@@ -51,22 +51,60 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
         return () => clearInterval(interval);
     }, []);
 
-    const pokemonSinAbility = [11, 151, 14, 144, 145, 146, 150, 151,200, 243, 244, 245, 249, 250, 
-        251, 377, 378, 379, 380, 381, 382, 385, 386, 480, 
-        481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 
-        491, 492, 493, 494, 647, 648, 649, 716, 717, 718, 
-        719, 720, 721, 785, 786, 787, 788, 789, 790, 791, 
+    const pokemonSinAbility = [11, 151, 14, 144, 145, 146, 150, 151, 200, 243, 244, 245, 249, 250,
+        251, 377, 378, 379, 380, 381, 382, 385, 386, 480,
+        481, 482, 483, 484, 485, 486, 487, 488, 489, 490,
+        491, 492, 493, 494, 647, 648, 649, 716, 717, 718,
+        719, 720, 721, 785, 786, 787, 788, 789, 790, 791,
         792, 793, 794, 795, 796, 797, 798, 799, 800, 801,
-        802, 803, 804, 805, 806, 807,10034]
-    const pokemonsLegendarios = [ 144, 145, 146, 150, 151, 243, 244, 245, 249, 250, 
-        251, 377, 378, 379, 380, 381, 382, 385, 386, 480, 
-        481, 482, 483, 484, 485, 486, 487, 488, 489, 490, 
-        491, 492, 493, 494, 647, 648, 649, 716, 717, 718, 
-        719, 720, 721, 785, 786, 787, 788, 789, 790, 791, 
+        802, 803, 804, 805, 806, 807, 10034]
+    const pokemonsLegendarios = [144, 145, 146, 150, 151, 243, 244, 245, 249, 250,
+        251, 377, 378, 379, 380, 381, 382, 385, 386, 480,
+        481, 482, 483, 484, 485, 486, 487, 488, 489, 490,
+        491, 492, 493, 494, 647, 648, 649, 716, 717, 718,
+        719, 720, 721, 785, 786, 787, 788, 789, 790, 791,
         792, 793, 794, 795, 796, 797, 798, 799, 800, 801,
         802, 803, 804, 805, 806, 807]
 
-    
+    const [evo1, setEvo1] = useState([''])
+
+    {
+        typeof evoluciones.chain != 'undefined' ?
+            <>
+                {
+                    fetch(`https://pokeapi.co/api/v2/pokemon/${evoluciones.chain.species.name}`)
+                        .then((res) => res.json())
+                        .then((result) => {
+                            setEvo1(result);
+                        })
+                }
+            </>
+            : ""
+    }
+
+    const [evo2, setEvo2] = useState([''])
+    {
+        typeof evoluciones.chain != 'undefined' ?
+            <>
+                {typeof evoluciones.chain.evolves_to[0] != 'undefined' ?
+                    <>
+                        {
+                            fetch(`https://pokeapi.co/api/v2/pokemon/${evoluciones.chain.evolves_to[0].species.name}`)
+                                .then((res) => res.json())
+                                .then((result) => {
+                                    setEvo2(result);
+                                    console.log(result);
+                                })
+                        }
+                    </>
+                    : ""}
+
+            </>
+
+            : ""
+    }
+
+
     return (
         <>
             <div className="row mx-auto ">
@@ -141,19 +179,20 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                             <div>
                                 {typeof evoluciones.chain != 'undefined' ?
                                     <>
-                                     {!pokemonsLegendarios.includes(Pokedex.id) ?
-                                        <>
-                                        <p className="text-white">
-                                            {evoluciones.chain.species.name
-                                            }</p>
-                                        <div>
-                                           
-                                        <img src={Pokedex.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
-                                        </div>                                       
-                                        </>
-                                        
-                                    
-                                     : <h3>¡¡¡ Este pokemon es legendario, no puede evolucionar !!!</h3>}      
+                                        {!pokemonsLegendarios.includes(Pokedex.id) ?
+                                            <>
+                                                <p className="text-white">
+                                                    {evoluciones.chain.species.name
+                                                    }</p>
+                                                <div>
+                                                    {typeof evo1.sprites != 'undefined' ?
+                                                        <img src={evo1.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
+                                                        : ''}
+                                                </div>
+                                            </>
+
+
+                                            : <h3>¡¡¡ Este pokemon es legendario, no puede evolucionar !!!</h3>}
                                     </>
                                     : ""}
 
@@ -167,7 +206,11 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                                         <p className="text-white">
                                                             {evoluciones.chain.evolves_to[0].species.name
                                                             }</p>
-
+                                                        <div>
+                                                            {typeof evo1.sprites != 'undefined' ?
+                                                                <img src={evo2.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
+                                                                : ''}
+                                                        </div>
                                                         <p className="text-white">
                                                             Min_Level {evoluciones.chain.evolves_to[0].evolution_details[0].min_level
                                                             }</p>
@@ -179,11 +222,11 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
 
 
 
-                                        : ""}
+                                            : ""}
 
                                     </>
 
-                                : ""}
+                                    : ""}
 
                                 {typeof evoluciones.chain != 'undefined' ?
                                     <>
@@ -196,6 +239,9 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                                                 <p className="text-white">
                                                                     {evoluciones.chain.evolves_to[0].evolves_to[0].species.name
                                                                     }</p>
+                                                                <div>
+                                                                    <img src={Pokedex.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
+                                                                </div>
                                                                 <p className="text-white">
                                                                     Min_Level {evoluciones.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
                                                                     }</p>
@@ -213,7 +259,7 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
 
                                     </>
 
-                                : ""}
+                                    : ""}
 
 
 
