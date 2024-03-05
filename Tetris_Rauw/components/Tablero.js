@@ -2,6 +2,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import { TETROMINOS, getRandomTetromino } from './Tetrominos';
 
+
+//esto luego lo quito porque es para una prueba 
+
 // Constantes que definen las dimensiones del tablero y la velocidad base del juego
 const numRows = 20;
 const numCols = 10;
