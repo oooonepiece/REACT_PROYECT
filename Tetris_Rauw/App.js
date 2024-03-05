@@ -1,11 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Tablero from './components/Tablero';
+import Inicio from './components/inicio';
 
 export default function App() {
   return (
     <>
-    <Tablero> </Tablero>
+    <Inicio></Inicio>
     </>
   )
 }

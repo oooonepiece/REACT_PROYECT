@@ -104,6 +104,39 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
             : ""
     }
 
+    const [evo3, setEvo3] = useState([''])
+
+    {typeof evoluciones.chain != 'undefined' ?
+    <>
+        {typeof evoluciones.chain.evolves_to[0] != 'undefined' ?
+            <>
+                {typeof evoluciones.chain.evolves_to[0].evolves_to[0] != 'undefined' ?
+                    <>
+                        {typeof evoluciones.chain.evolves_to[0] != 'undefined' ?
+                    <>
+                        {
+                            fetch(`https://pokeapi.co/api/v2/pokemon/${evoluciones.chain.evolves_to[0].evolves_to[0].species.name}`)
+                                .then((res) => res.json())
+                                .then((result) => {
+                                    setEvo3(result);
+                                    console.log(result);
+                                })
+                        }
+                    </>
+                    : ""}
+
+                    </>
+
+
+                    : ""}
+            </>
+
+            : ""}
+
+    </>
+
+    : ""}
+
 
     return (
         <>
@@ -240,8 +273,9 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                                                     {evoluciones.chain.evolves_to[0].evolves_to[0].species.name
                                                                     }</p>
                                                                 <div>
-                                                                    <img src={Pokedex.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
-                                                                </div>
+                                                                {typeof evo1.sprites != 'undefined' ?
+                                                                <img src={evo3.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
+                                                                : ''}                                                                </div>
                                                                 <p className="text-white">
                                                                     Min_Level {evoluciones.chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level
                                                                     }</p>
