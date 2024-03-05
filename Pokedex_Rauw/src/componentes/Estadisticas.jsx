@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react"
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {

@@ -12,7 +12,7 @@ export function CartasIMG({ pokemon, pokemonSolitario, setPokemonSolitario }) {
     }
 
     return (
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 mx-auto">
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row--xcolsl-3 mx-auto">
             {
                 pokemon.map((poke) => {
 
