@@ -11,6 +11,7 @@ body{
 }
 
 
+
 /* Esto de aqui es para que funcione las trancisiones de los nombres de movimientos*/
 .fade-enter{
   opacity: 0;
