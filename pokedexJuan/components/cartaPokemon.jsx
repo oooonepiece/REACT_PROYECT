@@ -1,9 +1,28 @@
 import React from "react"
-const CartaPokemon = ({ PokemonSolitario}) => {
+const CartaPokemon = ({ PokemonSolitario,ubi,setubi}) => {
     if(!PokemonSolitario){
         return <></>
     }
+    fetch("https://pokeapi.co/api/v2/pokemon/" + `${PokemonSolitario.id}` + "/encounters")
+    .then((res) => res.json())
+    .then((result) => {
+      setubi(result);
+    });
 
+  function extraerZonas() {
+    let zonasCaps = [];
+    if (typeof ubi !== "undefined" && Array.isArray(ubi)) {
+      ubi.forEach((a) => {
+        if (a && a.location_area && a.location_area.name) {
+          zonasCaps.push(`${a.location_area.name} | `);
+        }
+      });
+    }
+
+    return zonasCaps;
+  }
+
+  extraerZonas();
 
   return (
     <div className="card bg-black bg-opacity-75 text-white mt-5">
@@ -34,24 +53,49 @@ const CartaPokemon = ({ PokemonSolitario}) => {
             </div>
             <h5 className="card-title">Tipo:</h5>
             {PokemonSolitario.types.map(t => <p>{t.type.name}</p>)}
+            <div className="d-flex">
 
+            <button type="button" className="btn bg-white bg-opacity-75 mb-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Zona de Captura
+            </button>
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content bg-black bg-opacity-75">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="staticBackdropLabel">Zona de Captura</h5>
+                    <button type="button" className="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
+                  </div>
+                  <div className="modal-body ">
 
-            <button type="button" class="btn bg-white bg-opacity-75" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                  <p className="ms-2 fw-bold">{extraerZonas() == 0 ? <p>es una evolucion</p> : extraerZonas()}</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+             
+              
+              </div>
+
+            <button type="button" className="btn bg-white bg-opacity-75 " data-bs-toggle="modal" data-bs-target="#static">
               Movimientos
             </button>
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content bg-black bg-opacity-75">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Movimientos</h5>
-                    <button type="button" class="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
+            <div className="modal fade" id="static" data-bs-static="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content bg-black bg-opacity-75">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="staticLabel">Movimientos</h5>
+                    <button type="button" className="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
                   </div>
-                  <div class="modal-body ">
+                  <div className="modal-body ">
 
                     {PokemonSolitario.moves.map(m => <p>{m.move.name}</p>)}
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
 
                   </div>
                 </div>
@@ -60,7 +104,7 @@ const CartaPokemon = ({ PokemonSolitario}) => {
           </div>
         </div>
       </div>
-      <a href="../index.html"><img src="../src/assets/media/return.png" width="10%" ></img> </a>
+      <a href="../index.html"><img src="return.png" width="10%" ></img> </a>
     </div>
    
   );

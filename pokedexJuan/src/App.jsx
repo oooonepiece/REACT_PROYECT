@@ -4,12 +4,15 @@ import {Carta} from "../components/cards"
 import NavbarPokemon from '../components/navbar';
 import CartaPokemon from '../components/cartaPokemon';
 
+
 export default function App() {
  
 
   const [Pokemon,setPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [PokemonSolitario,setPokemonSolitario]=useState();
+  const[ubi,setubi]=useState('');
+  
 
   useEffect(() => {
     const getPokemon = async () => {
@@ -36,15 +39,17 @@ export default function App() {
   }, []);
   
   if(loading){
-    return  <img className="mx-auto d-block" src="../src/assets/media/carga.gif" ></img>
+    return  <img className="mx-auto d-block" src="carga.gif"></img>
   }
   return (
     <>
-    
-    <header ><NavbarPokemon ></NavbarPokemon></header>
+    <body>
+    <header ><NavbarPokemon ubi={ubi} setubi={setubi}></NavbarPokemon></header>
    <Carta Pokemon={Pokemon} PokemonSolitario={PokemonSolitario} setPokemonSolitario={setPokemonSolitario}></Carta>
-   <CartaPokemon PokemonSolitario={PokemonSolitario}></CartaPokemon>
+   <CartaPokemon PokemonSolitario={PokemonSolitario} ubi={ubi} setubi={setubi}></CartaPokemon>
+    </body>
     
+   
     </>
     
   )
