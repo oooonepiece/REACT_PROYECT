@@ -1,8 +1,26 @@
 import React from "react"
-const CartaBusqueda = ({ pokemon}) => {
 
+const CartaBusqueda = ({ pokemon, ubi, setubi }) => {
+  fetch("https://pokeapi.co/api/v2/pokemon/" + `${pokemon.id}` + "/encounters")
+    .then((res) => res.json())
+    .then((result) => {
+      setubi(result);
+    });
 
+  function extraerZonas() {
+    let zonasCaps = [];
+    if (typeof ubi !== "undefined" && Array.isArray(ubi)) {
+      ubi.forEach((a) => {
+        if (a && a.location_area && a.location_area.name) {
+          zonasCaps.push(`${a.location_area.name} | `);
+        }
+      });
+    }
 
+    return zonasCaps;
+  }
+
+  extraerZonas();
   return (
     <div className="card bg-black bg-opacity-75 text-white mt-5">
       <div className="row g-0">
@@ -15,9 +33,9 @@ const CartaBusqueda = ({ pokemon}) => {
 
             <h2 className="card-title">{pokemon.name}</h2>
             <br></br>
-            <h5 className="titulo-seccion">Habilidades:</h5>
+            <h3 className="titulo-seccion">Habilidades:</h3>
             {pokemon.abilities.map(a => a.ability.name)}
-            <h5 className="card-title">Estadisticas:</h5>
+            <h3 className="card-title">Estadisticas:</h3>
             {pokemon.stats.map(stat =>
               <section>
                 <span >{stat.stat.name} </span>
@@ -25,40 +43,65 @@ const CartaBusqueda = ({ pokemon}) => {
 
               </section>
             )}
+
             <p>Puntos en total: {pokemon.stats.map((a, b) => (a.base_stat + (b - b))).reduce((a, b) => a + b)} Pts.</p>
             <br></br>
-            <div>
-           
-            </div>
-            <h5 className="card-title">Tipo:</h5>
+
+            <h3 className="card-title">Tipo:</h3>
             {pokemon.types.map(t => <p>{t.type.name}</p>)}
+            <div className="d-flex">
+
+              <button type="button" className="btn bg-white bg-opacity-75 mb-4" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Zona de Captura
+              </button>
+              <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                  <div className="modal-content bg-black bg-opacity-75">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="staticBackdropLabel">Zona de Captura</h5>
+                      <button type="button" className="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
+                    </div>
+                    <div className="modal-body ">
+
+                      <p className="ms-2 fw-bold">{extraerZonas() == 0 ? <p>es una evolucion</p> : extraerZonas()}</p>
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
-            <button type="button" class="btn bg-white bg-opacity-75" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            </div>
+
+            <button type="button" className="btn bg-white bg-opacity-75 " data-bs-toggle="modal" data-bs-target="#static">
               Movimientos
             </button>
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content bg-black bg-opacity-75">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Movimientos</h5>
-                    <button type="button" class="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
+            <div className="modal fade" id="static" data-bs-static="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+              <div className="modal-dialog">
+                <div className="modal-content bg-black bg-opacity-75">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="staticLabel">Movimientos</h5>
+                    <button type="button" className="btn-close bg-danger  " data-bs-dismiss="modal" aria-label="Close "></button>
                   </div>
-                  <div class="modal-body ">
+                  <div className="modal-body ">
 
                     {pokemon.moves.map(m => <p>{m.move.name}</p>)}
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  <div className="modal-footer">
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
 
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
-      <a href="../index.html"><img src="../src/assets/media/return.png" width="10%" ></img> </a>
+      <a href="../index.html"><img src="return.png" width="10%" ></img> </a>
     </div>
 
   );

@@ -2,11 +2,12 @@
 import { useState } from "react";
 import CartaBusqueda from "./cartaBusqueda";
 
-export default function NavbarPokemon() {
+export default function NavbarPokemon({ubi,setubi}) {
 
 
     const [buscar, setBuscar] = useState('');
     const [pokemon, setPokemon] = useState(null);
+    
 
     const buscarPokemon = async () => {
         const urlPokemon = `https://pokeapi.co/api/v2/pokemon/${buscar.toLowerCase()}`;
@@ -31,7 +32,8 @@ export default function NavbarPokemon() {
             <nav className="navbar navbar-expand-lg bg-black fixed-top">
                 <div className="container-fluid">
                     
-                     <img className="d-none d-lg-block" src="../src/assets/media/bola.png" width="3%" ></img>
+                   <img className="d-none d-lg-block" src="bola.png" width="3%"></img>
+                       
                     <form
                         onSubmit={e => {
                             e.preventDefault();
@@ -53,13 +55,13 @@ export default function NavbarPokemon() {
                            
                            
                         </ul>
-                        <img src="../src/assets/media/pikachuCorriendo.gif" width="5%"></img>
+                        <img src="pikachuCorriendo.gif" width="5%"></img>
                     </div>
                 </div>
 
             </nav>
             {pokemon && 
-               <CartaBusqueda pokemon={pokemon}></CartaBusqueda>
+               <CartaBusqueda pokemon={pokemon} ubi={ubi} setubi={setubi}></CartaBusqueda>
             }
             
         </div>
