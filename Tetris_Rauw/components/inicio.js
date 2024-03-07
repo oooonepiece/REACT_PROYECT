@@ -40,16 +40,16 @@ const styles ={
     },
     playButton: {
       marginTop: 600, // Adjust the value as per your design
-      backgroundColor: 'pink', // Sample purple color
+      backgroundColor: '#CB3C1D', // Sample purple color
       paddingVertical: 15,
       borderRadius: 10,
       borderWidth: 1,
-      borderColor: 'black',
+      borderColor: 'black', // Sample
       justifyContent: 'center',
       alignItems: 'center',
     },
     playButtonText: {
-      color: 'red',
+      color: 'black',
       fontSize: 26, // Adjust the size as per your design
     },
   };
