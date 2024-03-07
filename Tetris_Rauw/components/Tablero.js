@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
 import { TETROMINOS, getRandomTetromino } from './Tetrominos';
-
-
-//esto luego lo quito porque es para una prueba 
+import Icon from 'react-native-vector-icons/FontAwesome'; // Importa el icono FontAwesome
 
 // Constantes que definen las dimensiones del tablero y la velocidad base del juego
 const numRows = 20;
@@ -29,6 +27,7 @@ const GameBoard = () => {
   const [gameOver, setGameOver] = useState(false); // Indica si el juego ha terminado
   const [score, setScore] = useState(0); // Puntuación del jugador
   const [speed, setSpeed] = useState(baseSpeed); // Velocidad del juego
+  const [paused, setPaused] = useState(false); // Indica si el juego está pausado
 
   /**
    * Función que verifica si hay colisión entre una pieza y su nueva posición.
@@ -125,7 +124,7 @@ const GameBoard = () => {
   };
 
   const movePiece = (direction) => {
-    if (!gameOver) {
+    if (!gameOver && !paused) {
       const newPos = { x: position.x + direction.x, y: position.y + direction.y };
       if (!checkCollision(newPos, currentPiece)) {
         setPosition(newPos);
@@ -141,7 +140,7 @@ const GameBoard = () => {
     };
     const interval = setInterval(update, speed);
     return () => clearInterval(interval);
-  }, [position, currentPiece, board, gameOver, speed]);
+  }, [position, currentPiece, board, gameOver, speed, paused]);
 
   const moveLeft = () => movePiece({ x: -1, y: 0 });
   const moveRight = () => movePiece({ x: 1, y: 0 });
@@ -151,11 +150,20 @@ const GameBoard = () => {
     setCurrentPiece({ ...currentPiece, rotationIndex: newRotationIndex });
   };
 
+  const togglePause = () => {
+    setPaused(prevPaused => !prevPaused);
+  };
+
   // Interfaz de usuario del componente
   return (
     <View style={styles.container}>
-      {/* Mostrar la puntuación */}
-      <Text style={styles.scoreText}>Puntuación: {score}</Text>
+      {/* Mostrar la puntuación y el botón de pausa */}
+      <View style={styles.scoreContainer}>
+        <Text style={styles.scoreText}>Puntuación: {score}</Text>
+        <TouchableOpacity onPress={togglePause} style={styles.pauseButton}>
+          <Text style={styles.pauseButtonText}>{paused ? 'Reanudar' : 'Pausar'}</Text>
+        </TouchableOpacity>
+      </View>
       
       {/* Tablero de juego */}
       <View style={styles.boardContainer}>
@@ -207,10 +215,18 @@ const GameBoard = () => {
       
       {/* Botones de control */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={moveLeft} style={styles.button}><Text style={styles.buttonText}>Izquierda</Text></TouchableOpacity>
-        <TouchableOpacity onPress={moveDown} style={styles.button}><Text style={styles.buttonText}>Bajar</Text></TouchableOpacity>
-        <TouchableOpacity onPress={moveRight} style={styles.button}><Text style={styles.buttonText}>Derecha</Text></TouchableOpacity>
-        <TouchableOpacity onPress={rotate} style={styles.button}><Text style={styles.buttonText}>Rotar</Text></TouchableOpacity>
+        <TouchableOpacity onPress={moveLeft} style={styles.button}>
+          <Icon name="arrow-left" size={20} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={moveDown} style={styles.button}>
+          <Icon name="arrow-down" size={20} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={moveRight} style={styles.button}>
+          <Icon name="arrow-right" size={20} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={rotate} style={styles.button}>
+          <Icon name="rotate-right" size={20} color="black" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -224,31 +240,48 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'black',
   },
+  scoreContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  scoreText: {
+    backgroundColor: '#CB3C1D',
+    borderRadius: 2,
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+    padding: 10,
+    marginBottom: 10,
+    color: 'black',
+  },
+  pauseButton: {
+    backgroundColor: '#CB3C1D',
+    borderRadius: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
+  pauseButtonText: {
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   boardContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   board: {
-    backgroundColor: 'white',
+    backgroundColor: 'red',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'red',
     width: numCols * 30,
     height: numRows * 30,
     marginRight: 5,
   },
-  scoreText: {
-    backgroundColor: 'white',
-    borderRadius: 2,
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 5,
-    marginBottom: 10, // Añadir espacio debajo de la puntuación
-    color: 'blue', // Color del texto de la puntuación
-  },
   nextPieceContainer: {
-    backgroundColor: 'white',
-    borderColor: 'white',
+    backgroundColor: 'red',
+    borderColor: 'red',
     marginTop: 10,
   },
   row: {
@@ -258,23 +291,23 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#AC0927',
   },
   buttonContainer: {
     flexDirection: 'row',
     marginTop: 10,
   },
   button: {
-    backgroundColor: 'blue', // Color de fondo del botón
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
+    backgroundColor: '#CB3C1D',
+    borderRadius: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 35,
     marginHorizontal: 5,
   },
   buttonText: {
-    color: 'pink', // Color del texto del botón
-    fontSize: 18, // Tamaño de fuente del texto del botón
-    fontWeight: 'bold', // Peso de fuente del texto del botón
+    color: 'black',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 

@@ -189,12 +189,15 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                         <p className="ms-2 fw-bold">
 
                                             <SwitchTransition>
-                                                <CSSTransition classNames="fade" key={arrayOfWords[movimientosCounter]} addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
+                                                <CSSTransition classNames="fade" key={arrayOfWords[movimientosCounter]} 
+                                                
+                                                    addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}>
                                                     <div className=" ">
                                                         {arrayOfWords[movimientosCounter]}
                                                     </div>
                                                 </CSSTransition>
                                             </SwitchTransition>
+
                                         </p>
                                     </div>
 
@@ -240,7 +243,7 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                                             {evoluciones.chain.evolves_to[0].species.name
                                                             }</p>
                                                         <div>
-                                                            {typeof evo1.sprites != 'undefined' ?
+                                                            {typeof evo2.sprites != 'undefined' ?
                                                                 <img src={evo2.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
                                                                 : ''}
                                                         </div>
@@ -273,7 +276,7 @@ export function InfomacionPoke({ Pokedex, ubi, evoluciones }) {
                                                                     {evoluciones.chain.evolves_to[0].evolves_to[0].species.name
                                                                     }</p>
                                                                 <div>
-                                                                {typeof evo1.sprites != 'undefined' ?
+                                                                {typeof evo3.sprites != 'undefined' ?
                                                                 <img src={evo3.sprites.other["official-artwork"].front_default} className=" w-25 h-100  mx-auto rounded-circle bg-danger px-4 py-4  mt-4 mb-4 border border-black " />
                                                                 : ''}                                                                </div>
                                                                 <p className="text-white">
